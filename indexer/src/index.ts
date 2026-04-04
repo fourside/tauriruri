@@ -5,7 +5,8 @@ import { createSchema } from "./schema.ts";
 import { extractChunks } from "./chunker.ts";
 import { createEmbedder } from "./embedder.ts";
 
-const BATCH_SIZE = 32;
+// batch=1: larger batches OOM on long sequences (32×5497 tokens → 46GB attention matrix)
+const BATCH_SIZE = 1;
 
 async function main() {
   const [inputPath, outputPath] = process.argv.slice(2);
@@ -24,7 +25,7 @@ async function main() {
   db.pragma("journal_mode = WAL");
   createSchema(db);
 
-  const modelPath = process.env["RURI_MODEL_PATH"] ?? "cl-nagoya/ruri-v3-310m";
+  const modelPath = process.env["RURI_MODEL_PATH"] ?? "sirasagi62/ruri-v3-310m-ONNX";
   console.log(`Loading model: ${modelPath}`);
   const embed = await createEmbedder(modelPath);
   console.log("Model loaded");
