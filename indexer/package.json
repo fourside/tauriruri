@@ -1,0 +1,17 @@
+{
+  "name": "tauriruri-indexer",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "setup": "npm rebuild better-sqlite3",
+    "index": "node src/index.ts"
+  },
+  "dependencies": {
+    "@huggingface/transformers": "^3",
+    "better-sqlite3": "^11"
+  },
+  "devDependencies": {
+    "@types/better-sqlite3": "^7"
+  }
+}
