@@ -5,3 +5,4 @@ conversations.json
 *.db-shm
 dist/
 .env
+PLAN.md
